@@ -4,7 +4,8 @@ This is Time-Stamp Protocol via HTTP server (https://tools.ietf.org/html/rfc3161
 https://en.wikipedia.org/wiki/Trusted_timestamping
 
 All operations are based on OpenSSL extension called ts. From version 0.9.8 it is a part of openssl binary so patching is not required anymore.
-It is based on idea from Grzegorz Golec, but his server received request from tcp connection and java libraries used only HTTP to send TSA request.
+
+It is based on idea from Grzegorz Golec (http://gregs.eu/linux-time-stamp-server/), but his server received request from tcp connection. Java libraries uses only HTTP to send TSA request, so i wrote this http version of TSA server.
 
 ## USAGE:
 install groovy
@@ -24,8 +25,8 @@ or call it from Java using class TSAClientBouncyCastle(itext).
 You need ssl key and certificate that can be used for Timestamping. 
 
 This certificate must have attributes:
-keyUsage = nonRepudiation
-extendedKeyUsage = timeStamping, critical
+* keyUsage = nonRepudiation
+* extendedKeyUsage = timeStamping, critical
 
 Contant your certification authority to get this cert or for testing create self signed (see below)
 
@@ -57,6 +58,6 @@ clock_precision_digits = 0 # number of digits after dot. (optional)
 ordering = yes # Is ordering defined for timestamps? # (optional, default: no) 
 tsa_name = yes # Must the TSA name be included in the reply? # (optional, default: no) 
 ess_cert_id_chain = no # Must the ESS cert id chain be included? # (optional, default: no) 
-## end of openssl.cnf snippet ##
 
+```
 
