@@ -68,7 +68,7 @@ oid_section             = new_oids
 tsa_policy1=1.1.1.1
 ```
 
-## SSL tutorial:
+## openssl tutorial:
 
 use the following command to generate tsa.key:
 ```
