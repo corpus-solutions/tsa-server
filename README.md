@@ -1,6 +1,7 @@
 # portable Time Stamp Server (over HTTP)
 
 This is Time-Stamp Protocol via HTTP server (https://tools.ietf.org/html/rfc3161 3.4.)
+
 https://en.wikipedia.org/wiki/Trusted_timestamping
 
 All operations are based on OpenSSL extension called ts. From version 0.9.8 it is a part of openssl binary so patching is not required anymore.
@@ -65,4 +66,27 @@ tsa_policy1 must be defined in new_oids section like this:
 oid_section             = new_oids
 [ new_oids ]
 tsa_policy1=1.1.1.1
+```
+
+## SSL tutorial:
+
+use the following command to generate tsa.key:
+```
+openssl genrsa -des3 -out tsa.key 4096
+```
+than create certificate request for certification authority:
+```
+openssl req -new -key tsa.key -out tsa.csr
+```
+
+If you don't have certificates and use fake self signed authority, or you use openssl on your own, generate your cert:
+
+create a file extKey.cnf with the extendedKeyUsage inside
+```
+extendedKeyUsage = critical,timeStamping
+```
+
+Add use it when creating the request :
+```
+openssl x509 -req -days 730 -in tsa.csr -CA tsaroot.crt -CAkey tsaroot.key -out tsa.crt -extfile extKey.cnf
 ```
