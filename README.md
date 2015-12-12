@@ -1,6 +1,6 @@
 # portable Time Stamp Server (over HTTP)
 
-This is Time-Stamp Protocol via HTTP server (https://tools.ietf.org/html/rfc3161 3.4.)
+This is server for Time-Stamp Protocol via HTTP server (https://tools.ietf.org/html/rfc3161 3.4.)
 
 https://en.wikipedia.org/wiki/Trusted_timestamping
 
