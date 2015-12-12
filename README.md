@@ -60,3 +60,9 @@ ess_cert_id_chain = no # Must the ESS cert id chain be included? # (optional, de
 
 ```
 
+tsa_policy1 must be defined in new_oids section like this:
+```
+oid_section             = new_oids
+[ new_oids ]
+tsa_policy1=1.1.1.1
+```
