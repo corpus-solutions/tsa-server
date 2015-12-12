@@ -1,5 +1,7 @@
 #!/usr/bin/env groovy
 
+//VERSION 0.1
+
 //parameters
 def PORT = 318;
 def OPENSSL_CFG_FILE = "/etc/ssl/openssl.cnf";
