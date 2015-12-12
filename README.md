@@ -14,10 +14,10 @@ curl -X POST -H "Content-Type:application/timestamp-query" -d @mycertificatefile
 or call it from Java using class TSAClientBouncyCastle(itext).
 
 ## Requirements
-– groovy (and java of cource)
-– OpenSSL > 0.9.8
-– CA or request for certificate
-– certificate for TSA signing
+* groovy (and java of cource)
+* OpenSSL > 0.9.8
+* CA or request for certificate
+* certificate for TSA signing
 
 ## Installation:
 
@@ -30,7 +30,9 @@ extendedKeyUsage = timeStamping, critical
 Contant your certification authority to get this cert or for testing create self signed (see below)
 
 Than configure openssl in openssl.cnf:
-```
+
+```sh
+
 [ tsa ]
 
 default_tsa = tsa_config1 # the default TSA section
@@ -56,5 +58,5 @@ ordering = yes # Is ordering defined for timestamps? # (optional, default: no)
 tsa_name = yes # Must the TSA name be included in the reply? # (optional, default: no) 
 ess_cert_id_chain = no # Must the ESS cert id chain be included? # (optional, default: no) 
 ## end of openssl.cnf snippet ##
-```
+
 
