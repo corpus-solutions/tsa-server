@@ -8,11 +8,10 @@ All operations are based on OpenSSL extension called ts. From version 0.9.8 it i
 It is based on idea from Grzegorz Golec (http://gregs.eu/linux-time-stamp-server/), but his server received request from tcp connection. Java libraries uses only HTTP to send TSA request, so i wrote this http version of TSA server.
 
 ## USAGE:
-install groovy
-groovy ./server.groovy
-curl -X POST -H "Content-Type:application/timestamp-query" -d @mycertificatefile localhost:318 -v
-
-or call it from Java using class TSAClientBouncyCastle(itext).
+* install groovy
+* groovy ./server.groovy
+* curl -X POST -H "Content-Type:application/timestamp-query" -d @mycertificatefile localhost:318 -v
+* or call it from Java using class TSAClientBouncyCastle(itext).
 
 ## Requirements
 * groovy (and java of cource)
