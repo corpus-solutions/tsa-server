@@ -1,10 +1,11 @@
 #!/usr/bin/env groovy
 
-//VERSION 0.1
+//VERSION 1.0
 
 //parameters
 def PORT = 318;
 def OPENSSL_CFG_FILE = "/etc/ssl/openssl.cnf";
+def GRACEFUL_DELAY_SECONDS = 3
 def openssl = "openssl"; ///usr/bin/openssl
 
 /*
@@ -36,10 +37,20 @@ println "Starting server on port $PORT"
 //configuring a Java 6 HttpServer
 InetSocketAddress addr = new InetSocketAddress(PORT)
 httpServer = com.sun.net.httpserver.HttpServer.create(addr, 0)
+httpThreadPool = Executors.newCachedThreadPool()
 httpServer.with {
     createContext('/', new ReverseHandler(OPENSSL_CFG_FILE,openssl))
-    setExecutor(Executors.newCachedThreadPool())
+    setExecutor(httpThreadPool)
     start()
+}
+
+println "READY for use !"
+
+Runtime.runtime.addShutdownHook {
+  println "Shutting down..."
+  httpServer.stop(GRACEFUL_DELAY_SECONDS)
+  httpThreadPool.shutdownNow()
+  println "server stopped"
 }
 
 //test it:
